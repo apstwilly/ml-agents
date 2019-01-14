@@ -10,7 +10,7 @@ import re
 import numpy as np
 import tensorflow as tf
 from tensorflow.python.tools import freeze_graph
-from mlagents.envs.environment import UnityEnvironment
+from mlagents.envs.deepmind_environment import DeepMindEnvironment
 from mlagents.envs.exception import UnityEnvironmentException
 
 from mlagents.trainers.ppo.trainer import PPOTrainer
@@ -23,7 +23,7 @@ class TrainerController(object):
     def __init__(self, env_path, run_id, save_freq, curriculum_folder,
                  fast_simulation, load, train, worker_id, keep_checkpoints,
                  lesson, seed, docker_target_name,
-                 trainer_config_path, no_graphics):
+                 trainer_config_path, no_graphics, length, level_script, config):
         """
         :param env_path: Location to the environment executable to be loaded.
         :param run_id: The sub-directory name for model and summary statistics
@@ -94,11 +94,9 @@ class TrainerController(object):
         self.seed = seed
         np.random.seed(self.seed)
         tf.set_random_seed(self.seed)
-        self.env = UnityEnvironment(file_name=env_path,
-                                    worker_id=self.worker_id,
-                                    seed=self.seed,
-                                    docker_training=self.docker_training,
-                                    no_graphics=no_graphics)
+        self.env = DeepMindEnvironment(level_script=level_script,
+                                       config=config,
+                                       )
         if env_path is None:
             self.env_name = 'editor_' + self.env.academy_name
         else:
@@ -223,12 +221,7 @@ class TrainerController(object):
                     trainer_parameters[k] = trainer_config[_brain_key][k]
             trainer_parameters_dict[brain_name] = trainer_parameters.copy()
         for brain_name in self.env.external_brain_names:
-            if trainer_parameters_dict[brain_name]['trainer'] == 'imitation':
-                self.trainers[brain_name] = BehavioralCloningTrainer(
-                    sess, self.env.brains[brain_name],
-                    trainer_parameters_dict[brain_name], self.train_model,
-                    self.seed, self.run_id)
-            elif trainer_parameters_dict[brain_name]['trainer'] == 'ppo':
+            if trainer_parameters_dict[brain_name]['trainer'] == 'ppo':
                 self.trainers[brain_name] = PPOTrainer(
                     sess, self.env.brains[brain_name],
                     self.meta_curriculum
@@ -275,11 +268,7 @@ class TrainerController(object):
             A Data structure corresponding to the initial reset state of the
             environment.
         """
-        if self.meta_curriculum is not None:
-            return self.env.reset(config=self.meta_curriculum.get_config(),
-                                  train_mode=self.fast_simulation)
-        else:
-            return self.env.reset(train_mode=self.fast_simulation)
+        return self.env.reset()
 
     def start_learning(self):
         # TODO: Should be able to start learning at different lesson numbers
@@ -362,6 +351,7 @@ class TrainerController(object):
                          take_action_value[brain_name],
                          take_action_outputs[brain_name]) = \
                             trainer.take_action(curr_info)
+                    print(take_action_vector)
                     new_info = self.env.step(vector_action=take_action_vector,
                                              memory=take_action_memories,
                                              text_action=take_action_text,
