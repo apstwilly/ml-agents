@@ -4,8 +4,11 @@
     <list default="true" id="7bde7054-257c-450a-97a7-e204b925eb35" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/trainer_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/trainer_config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml-agents/mlagents/envs/brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml-agents/mlagents/envs/brain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-agents/mlagents/envs/deepmind_environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml-agents/mlagents/envs/deepmind_environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,19 +20,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py">
+        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/policy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1392">
-              <caret line="45" column="79" selection-start-line="45" selection-start-column="79" selection-end-line="45" selection-end-column="79" />
+            <state relative-caret-position="600">
+              <caret line="181" column="67" selection-start-line="181" selection-start-column="67" selection-end-line="181" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/policy.py">
+        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/policy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4656">
-              <caret line="198" selection-start-line="198" selection-end-line="198" />
+            <state relative-caret-position="-1440">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -40,17 +45,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8256">
-              <caret line="387" selection-start-line="387" selection-end-line="387" />
+            <state relative-caret-position="571">
+              <caret line="273" column="49" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="364" column="44" selection-start-line="364" selection-start-column="44" selection-end-line="364" selection-end-column="44" />
+            <state relative-caret-position="240">
+              <caret line="349" column="21" selection-start-line="349" selection-start-column="21" selection-end-line="349" selection-end-column="21" />
               <folding>
                 <element signature="e#125#134#0" expanded="true" />
               </folding>
@@ -58,11 +63,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/brain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="56" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="-72">
+              <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/deepmind_environment.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="936">
+              <caret line="361" column="54" selection-start-line="361" selection-start-column="54" selection-end-line="361" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/trainer_config.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -70,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/environment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+            <state relative-caret-position="9072">
+              <caret line="450" column="35" selection-start-line="450" selection-start-column="18" selection-end-line="450" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -85,6 +123,34 @@
     <findStrings>
       <find>self._n_agents</find>
       <find>_flatten</find>
+      <find>train_model</find>
+      <find>INFO</find>
+      <find>wrap_unity_input</find>
+      <find>_generate_step_input</find>
+      <find>take_action_value</find>
+      <find>take_action</find>
+      <find>INFO:</find>
+      <find>&quot;INFO:</find>
+      <find>summa</find>
+      <find>summary_freq</find>
+      <find>_load_config</find>
+      <find>trainer_config</find>
+      <find>episode</find>
+      <find>No episode was completed</find>
+      <find>cumulative_reward</find>
+      <find>exchange</find>
+      <find>path</find>
+      <find>load</find>
+      <find>freq</find>
+      <find>self.stats</find>
+      <find>'RGB_INTERLEAVED'</find>
+      <find>value</find>
+      <find>act_size</find>
+      <find>prev_action</find>
+      <find>self.update_dict</find>
+      <find>BrainInfo</find>
+      <find>for_deepmind</find>
+      <find>max_reached</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -94,18 +160,22 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ml-agents/mlagents/envs/environment.py" />
+        <option value="$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/envs/deepmind_environment.py" />
+        <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py" />
+        <option value="$USER_HOME$/deepmind_lab_use" />
+        <option value="$PROJECT_DIR$/summaries/1.txt" />
+        <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/buffer.py" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/policy.py" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/trainer.py" />
-        <option value="$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/envs/deepmind_environment.py" />
-        <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/envs/brain.py" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/envs/deepmind_environment.py" />
+        <option value="$PROJECT_DIR$/config/trainer_config.yaml" />
         <option value="$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="452" />
     <option name="y" value="27" />
     <option name="width" value="930" />
@@ -123,6 +193,11 @@
             <path>
               <item name="ml-agents" type="b2602c69:ProjectViewProjectNode" />
               <item name="ml-agents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ml-agents" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml-agents" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ml-agents" type="b2602c69:ProjectViewProjectNode" />
@@ -157,6 +232,11 @@
               <item name="trainers" type="462c0819:PsiDirectoryNode" />
               <item name="ppo" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ml-agents" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ml-agents" type="462c0819:PsiDirectoryNode" />
+              <item name="summaries" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -189,10 +269,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="990" extended-state="7" />
+    <frame x="0" y="25" width="1920" height="990" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24986821" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15181866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -227,23 +307,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/bc/offline_trainer.py" />
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/bc/online_trainer.py" />
-    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8736">
-          <caret line="368" selection-start-line="368" selection-end-line="368" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/trainers/trainer_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2784">
-          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/trainers/trainer_controller.py" />
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/rpc_communicator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-648">
@@ -267,33 +331,7 @@
         <state relative-caret-position="-741" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/policy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4656">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/envs/deepmind_environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/ml-agents/ml-agents/mlagents/envs/deepmind_environment.py" />
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/communicator_objects/unity_input_pb2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-720" />
@@ -304,24 +342,121 @@
         <state relative-caret-position="-165" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/communicator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/learn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1392">
-          <caret line="45" column="79" selection-start-line="45" selection-start-column="79" selection-end-line="45" selection-end-column="79" />
+        <state relative-caret-position="3672">
+          <caret line="153" column="43" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/deepmind_lab_use">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/buffer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="65" column="104" selection-start-line="65" selection-start-column="104" selection-end-line="65" selection-end-column="104" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/summaries/1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/environment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9072">
+          <caret line="450" column="35" selection-start-line="450" selection-start-column="18" selection-end-line="450" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/policy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1440">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/policy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="181" column="67" selection-start-line="181" selection-start-column="67" selection-end-line="181" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/ppo/trainer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8256">
-          <caret line="387" selection-start-line="387" selection-end-line="387" />
+        <state relative-caret-position="571">
+          <caret line="273" column="49" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/trainer_config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="349" column="21" selection-start-line="349" selection-start-column="21" selection-end-line="349" selection-end-column="21" />
+          <folding>
+            <element signature="e#125#134#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/deepmind_environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="342" column="68" selection-start-line="342" selection-start-column="68" selection-end-line="342" selection-end-column="68" />
+        <state relative-caret-position="936">
+          <caret line="361" column="54" selection-start-line="361" selection-start-column="54" selection-end-line="361" selection-end-column="54" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -330,18 +465,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/envs/brain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml-agents/mlagents/trainers/trainer_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="364" column="44" selection-start-line="364" selection-start-column="44" selection-end-line="364" selection-end-column="44" />
-          <folding>
-            <element signature="e#125#134#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-72">
+          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
         </state>
       </provider>
     </entry>

@@ -7,6 +7,7 @@ import logging
 
 import yaml
 import re
+import time
 import numpy as np
 import tensorflow as tf
 from tensorflow.python.tools import freeze_graph
@@ -57,9 +58,9 @@ class TrainerController(object):
         if not docker_target_name:
             self.docker_training = False
             self.trainer_config_path = trainer_config_path
-            self.model_path = './models/{run_id}'.format(run_id=run_id)
+            self.model_path = '/home/apstwilly/lab/python/ml-agents/models/{run_id}'.format(run_id=run_id)
             self.curriculum_folder = curriculum_folder
-            self.summaries_dir = './summaries'
+            self.summaries_dir = '/home/apstwilly/lab/python/ml-agents/summaries'
         else:
             self.docker_training = True
             self.trainer_config_path = \
@@ -303,6 +304,8 @@ class TrainerController(object):
                 sess.run(init)
             global_step = 0  # This is only for saving the model
             curr_info = self._reset_env()
+
+
             if self.train_model:
                 for brain_name, trainer in self.trainers.items():
                     trainer.write_tensorboard_text('Hyperparameters',
@@ -313,8 +316,8 @@ class TrainerController(object):
                       or not self.train_model:
                     if self.meta_curriculum:
                         # Get the sizes of the reward buffers.
-                        reward_buff_sizes = {k:len(t.reward_buffer) \
-                                            for (k,t) in self.trainers.items()}
+                        reward_buff_sizes = {k: len(t.reward_buffer) \
+                                            for (k, t) in self.trainers.items()}
                         # Attempt to increment the lessons of the brains who
                         # were ready.
                         lessons_incremented = \
@@ -324,16 +327,9 @@ class TrainerController(object):
 
                     # If any lessons were incremented or the environment is
                     # ready to be reset
-                    if (self.meta_curriculum
-                            and any(lessons_incremented.values())):
+                    if self.env.global_done:
                         curr_info = self._reset_env()
-                        for brain_name, trainer in self.trainers.items():
-                            trainer.end_episode()
-                        for brain_name, changed in lessons_incremented.items():
-                            if changed:
-                                self.trainers[brain_name].reward_buffer.clear()
-                    elif self.env.global_done:
-                        curr_info = self._reset_env()
+                        print('Environment stopped early')
                         for brain_name, trainer in self.trainers.items():
                             trainer.end_episode()
 
@@ -351,11 +347,12 @@ class TrainerController(object):
                          take_action_value[brain_name],
                          take_action_outputs[brain_name]) = \
                             trainer.take_action(curr_info)
-                    print(take_action_vector)
+                    #time.sleep(0.0005)
                     new_info = self.env.step(vector_action=take_action_vector,
                                              memory=take_action_memories,
                                              text_action=take_action_text,
-                                             value=take_action_value)
+                                             value=take_action_value,
+                                             p_info=curr_info)
                     for brain_name, trainer in self.trainers.items():
                         trainer.add_experiences(curr_info, new_info,
                                                 take_action_outputs[brain_name])
@@ -363,14 +360,13 @@ class TrainerController(object):
                         if trainer.is_ready_update() and self.train_model \
                                 and trainer.get_step <= trainer.get_max_steps:
                             # Perform gradient descent with experience buffer
+                            print('update')
                             trainer.update_policy()
                         # Write training statistics to Tensorboard.
                         if self.meta_curriculum is not None:
                             trainer.write_summary(
                                 global_step,
-                                lesson_num=self.meta_curriculum
-                                    .brains_to_curriculums[brain_name]
-                                    .lesson_num)
+                                lesson_num=self.meta_curriculum.brains_to_curriculums[brain_name].lesson_num)
                         else:
                             trainer.write_summary(global_step)
                         if self.train_model \
@@ -381,6 +377,7 @@ class TrainerController(object):
                             and self.train_model:
                         # Save Tensorflow model
                         self._save_model(sess, steps=global_step, saver=saver)
+
                     curr_info = new_info
                 # Final save Tensorflow model
                 if global_step != 0 and self.train_model:

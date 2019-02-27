@@ -55,8 +55,9 @@ class BrainParameters:
                                                  str(self.vector_action_space_size),
                                                  ', '.join(self.vector_action_descriptions))
 
+    '''
     @staticmethod
-    def for_deepmind(height, width):
+    def for_deepmind(height, width, num_action):
         """
         Converts brain parameter proto to BrainParameter object.
         :param brain_param_proto: protobuf object.
@@ -71,7 +72,29 @@ class BrainParameters:
                                        {"vectorObservationSize": 0,
                                         "numStackedVectorObservations": 1,
                                         "cameraResolutions": resolution,
-                                        "vectorActionSize": [11],
+                                        "vectorActionSize": [num_action],
+                                        "vectorActionDescriptions": '',
+                                        "vectorActionSpaceType": 0})
+        return brain_params
+
+    '''
+    @staticmethod
+    def for_deepmind(height, width, num_action, num_repeate):
+        """
+        Converts brain parameter proto to BrainParameter object.
+        :param brain_param_proto: protobuf object.
+        :return: BrainParameter object.
+        """
+        resolution = [{
+            "height": height,
+            "width": width,
+            "blackAndWhite": False
+        }]
+        brain_params = BrainParameters('Deepmind',
+                                       {"vectorObservationSize": 0,
+                                        "numStackedVectorObservations": 1,
+                                        "cameraResolutions": resolution,
+                                        "vectorActionSize": [num_action, num_repeate],
                                         "vectorActionDescriptions": '',
                                         "vectorActionSpaceType": 0})
         return brain_params

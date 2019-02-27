@@ -24,10 +24,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mlagents.envs")
 
 class Aca(object):
-    def __init__(self,height, width):
+    def __init__(self, height, width, num_action, num_repeate):
         self.name = 'DeepMind'
         self.log_path = ''
-        self.brain_parameters = [BrainParameters.for_deepmind(height, width)]
+        self.brain_parameters = [BrainParameters.for_deepmind(height, width, num_action, num_repeate)]
 class DeepMindEnvironment(object):
     def __init__(self, level_script=None, config=None):
         """
@@ -45,7 +45,8 @@ class DeepMindEnvironment(object):
         atexit.register(self._close)
         self.level_script = level_script
         self.config = config
-        self.env = deepmind_lab.Lab(self.level_script, ['RGB_INTERLEAVED'], config=self.config)
+        self.ob_src = 'RGB_INTERLEAVED'
+        self.env = deepmind_lab.Lab(self.level_script, [self.ob_src, 'VEL.TRANS', 'VEL.ROT', 'INSTR'], config=self.config)
         self._buffer_size = 12000
         self._version_ = "API-5"
         self._loaded = True    # If true, this means the environment was successfully loaded
@@ -53,7 +54,17 @@ class DeepMindEnvironment(object):
         # TODO : think of a better way to expose the academyParameters
         self._n_agents = {}
         self._global_done = None
-        aca_params = Aca(int(self.config['height']), int(self.config['width']))
+
+        self.action = np.array([[-20, 0, 0, 0, 0, 0, 0],
+                                [20, 0, 0, 0, 0, 0, 0],
+                                [0, 0, -1, 0, 0, 0, 0],
+                                [0, 0, 1, 0, 0, 0, 0],
+                                [0, 0, 0, 1, 0, 0, 0],
+                                [0, 0, 0, -1, 0, 0, 0]])
+        self.num_action = len(self.action)
+        self.num_repeat = 5
+
+        aca_params = Aca(int(self.config['height']), int(self.config['width']), self.num_action, self.num_repeat)
         self._academy_name = aca_params.name
         self._log_path = aca_params.log_path
         self._brains = {}
@@ -66,17 +77,7 @@ class DeepMindEnvironment(object):
             self._external_brain_names += [brain_param.brain_name]
         self._num_brains = len(self._brain_names)
         self._num_external_brains = len(self._external_brain_names)
-        self.action = np.array([[-20, 0, 0, 0, 0, 0, 0],
-                       [20, 0, 0, 0, 0, 0, 0],
-                       [0, 10, 0, 0, 0, 0, 0],
-                       [0, -10, 0, 0, 0, 0, 0],
-                       [0, 0, -1, 0, 0, 0, 0],
-                       [0, 0, 1, 0, 0, 0, 0],
-                       [0, 0, 0, 1, 0, 0, 0],
-                       [0, 0, 0, -1, 0, 0, 0],
-                       [0, 0, 0, 0, 1, 0, 0],
-                       [0, 0, 0, 0, 0, 1, 0],
-                       [0, 0, 0, 0, 0, 0, 1]])
+
 
     @property
     def logfile_path(self):
@@ -203,18 +204,19 @@ class DeepMindEnvironment(object):
     def reset(self) -> AllBrainInfo:
         self.env.reset()
         obs = self.env.observations()
+        vel = np.append(obs['VEL.TRANS'], obs['VEL.ROT'])
         all_brain_info = {}
-        brain_info = BrainInfo(visual_observation=[[obs['RGB_INTERLEAVED']]],
-                               vector_observation=[],
+        brain_info = BrainInfo(visual_observation=[[obs[self.ob_src]]],
+                               vector_observation=[[vel]],
                                text_observations=[''],
-                               memory=[],
+                               memory=np.array([[0]*256]),
                                reward=[0],
                                agents=[1],
                                local_done=[False],
-                               vector_action=[0],
+                               vector_action=np.array([np.array([0, 2])]),
                                text_action=[0],
                                max_reached=[False],
-                               action_mask=[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+                               action_mask=[[1]*(self.num_action+self.num_repeat)]
                                )
         all_brain_info['Deepmind'] = brain_info
         for _b in self._external_brain_names:
@@ -222,7 +224,7 @@ class DeepMindEnvironment(object):
         self._global_done = False
         return all_brain_info
 
-    def step(self,  vector_action=None, memory=None, text_action=None, value=None) -> AllBrainInfo:
+    def step(self,  vector_action=None, memory=None, text_action=None, value=None, p_info = None) -> AllBrainInfo:
         """
         Provides the environment with an action, moves the environment dynamics forward accordingly, and returns
         observation, state, and reward information to the agent.
@@ -329,26 +331,36 @@ class DeepMindEnvironment(object):
                         self._brains[b].vector_action_space_type,
                         str(vector_action[b])))
             action = int(vector_action['Deepmind'][0])
-            reward = self.env.step(self.action[action].astype(np.intc), num_steps=1)
-            obs = self.env.observations()
-            all_brain_info = {}
-            brain_info = BrainInfo(visual_observation=[[obs['RGB_INTERLEAVED']]],
-                                   vector_observation=[],
-                                   text_observations=[''],
-                                   memory=memory['Deepmind'],
-                                   reward=[reward],
-                                   agents=[1],
-                                   local_done=[False],
-                                   vector_action=[action],
-                                   text_action=text_action['Deepmind'],
-                                   max_reached=[False],
-                                   action_mask=[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
-                                   )
-            all_brain_info['Deepmind'] = brain_info
-            self._global_done = not self.env.is_running()
-            for _b in self._external_brain_names:
-                self._n_agents[_b] = 1
-            return all_brain_info
+            num_repeat = (int(vector_action['Deepmind'][1])+1)*2
+            reward = self.env.step(self.action[action].astype(np.intc), num_steps=num_repeat)
+            if self.env.is_running():
+                obs = self.env.observations()
+                vel = np.append(obs['VEL.TRANS'], obs['VEL.ROT'])
+                all_brain_info = {}
+                max_reach = False
+                if reward == 10:
+                    max_reach = True
+                brain_info = BrainInfo(visual_observation=[[obs[self.ob_src]]],
+                                       vector_observation=[[vel]],
+                                       text_observations=[''],
+                                       memory=np.array([memory['Deepmind']]),
+                                       reward=[reward],
+                                       agents=[1],
+                                       local_done=[False],
+                                       vector_action=np.array([np.array([action, int(vector_action['Deepmind'][1])])]),
+                                       text_action=text_action['Deepmind'],
+                                       max_reached=[max_reach],
+                                       action_mask=[[1]*(self.num_action+self.num_repeat)]
+                                       )
+                all_brain_info['Deepmind'] = brain_info
+                self._global_done = not self.env.is_running()
+                for _b in self._external_brain_names:
+                    self._n_agents[_b] = 1
+                return all_brain_info
+            else:
+                self._global_done = not self.env.is_running()
+                p_info['Deepmind'].local_done = [True]
+                return p_info
         elif not self._loaded:
             raise UnityEnvironmentException("No Unity environment is loaded.")
         elif self._global_done:
